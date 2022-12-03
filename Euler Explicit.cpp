@@ -8,7 +8,7 @@
 
 int main(){
 
-/*Definició de variables*/
+/*DefiniciÃ³ de variables*/
 
 double dt, dz, T_c, t_a, sigma, kappa, P_ext, V;
 int i, j, M;
@@ -25,7 +25,7 @@ T_c=(kappa/P_ext)*(36.5+273.15);
 
 double T[N][M];
 
-/*Definició de condicions de contorn*/
+/*DefiniciÃ³ de condicions de contorn*/
 
 for(i=0; i<N; i++){
 	T[i][0]=T_c;
