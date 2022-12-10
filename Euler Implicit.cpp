@@ -15,11 +15,13 @@ kappa=0.56;
 V=40;
 P_ext=0.5*sigma*V*V;
 t_a=0.025;
-dz=0.02;
-dt=0.005*dz;
+dz=0.0002;
+dt=dz;
 M=t_a/dt + 1.0;
 T_c=(kappa/P_ext)*(36.5+273.15); 
 gamma=dt/(dz*dz);
+
+printf("%d", M);
 
 double T[N][M];
 double T_old[N][M];
@@ -67,8 +69,34 @@ for(j=1; j<M; j++){
 	}	
 
 	for(j=0; j<M;j++){
-		printf("%lf \t %\lf \n", T_old[55][j], T_old[90][j]);
+		//printf("%lf \t %\lf \n", T_old[55][j], T_old[90][j]);
 	 }
+	 
+FILE* output3;
+
+output3=fopen("implicitp.dat", "w");
+
+for(i=0; i<N; i++){
+	fprintf(output3, "%lf \t %lf\n", i*dz, T_old[i][M-1]*(P_ext/kappa)-273.15);
+}
+
+fclose(output3);
+
+
+FILE* output;
+
+output=fopen("dataimplicit.dat", "w");
+
+for(j=0; j<M; j++){
+	for(i=0; i<N; i++){
+		fprintf(output,"%lf \t %lf\n", i*dz, T_old[i][j]*(P_ext/kappa)-273.15);
+	}
+	fprintf(output, "\n");
+	fprintf(output, "\n");
+}
+
+fclose(output);
+
 
 FILE *files[N];
 for (i = 0; i < N; i++)
